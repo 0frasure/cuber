@@ -1,7 +1,9 @@
 # Cuber
 Chrome Cube Lab Files
 
-Just download the .ZIP file and get started
+Just download the .ZIP file then go to you browser run
+> index.HTML
+then get started!
 
 Official project site: https://www.chrome.com/cubelab
 
