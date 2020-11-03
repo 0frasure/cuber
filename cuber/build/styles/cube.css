@@ -200,16 +200,16 @@
 }
 
 
-.cube .sticker.red 		{ background: #DC422F;	}
-.cube .sticker.white 	{ background: #F3F3F3;	}
-.cube .sticker.blue 	{ background: #3D81F6; 	}
-.cube .sticker.green 	{ background: #009D54;	}
-.cube .sticker.orange 	{ background: #E87000; 	}
-.cube .sticker.yellow 	{ background: #F5B400; 	}
+.cube .sticker.red 		{ background: #cca62b;	}
+.cube .sticker.white 	{ background: #856e0c;	}
+.cube .sticker.blue 	{ background: #fcb900; 	}
+.cube .sticker.green 	{ background: #865e06;	}
+.cube .sticker.orange 	{ background: #fcce37; 	}
+.cube .sticker.yellow 	{ background: #a78a3d; 	}
 
 .cube .sticker.stickerLogo {
 
-	background: #F3F3F3 url( "../media/rubiksLogoClassic.png" );
+	background: #0eb16d url( "../media/rubiksLogoClassic.png" );
 	background-size: 100% 100%;
 	background-repeat: none;
 }

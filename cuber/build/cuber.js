@@ -1011,7 +1011,7 @@ self.console = self.console || {
 
 	if( self.cancelAnimationFrame === undefined && self['clearTimeout'] !== undefined ) {
 
-		self.cancelAnimationFrame = function ( id ) { self.clearTimeout( id ) };
+		self.cancelAnimationFrame = function ( id ) { self.clearTimeout( id ); };
 
 	}
 
@@ -5806,7 +5806,7 @@ THREE.PerspectiveCamera.prototype.setLens = function ( focalLength, frameHeight 
 	this.fov = 2 * THREE.Math.radToDeg( Math.atan( frameHeight / ( focalLength * 2 ) ) );
 	this.updateProjectionMatrix();
 
-}
+};
 
 
 /**

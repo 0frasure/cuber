@@ -281,6 +281,12 @@ ERNO.renderers.CSS3DCubelet = (function(){
 				face.element.appendChild( stickerElement );
 
 
+				// STICKER ID
+				// Making the sticker identifyable through the DOM because we're lazy
+				
+				//TODO: figure out structure
+				stickerElement.setAttribute('sticker', `${cubelet.id}-${face.id}`);
+
 
 				//  If this happens to be our logo-bearing Cubelet
 				//  we had better attach the logo to it!

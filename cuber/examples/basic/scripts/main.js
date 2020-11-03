@@ -107,6 +107,15 @@ $(document).ready( function(){
 	}
 
 
+	cube.domElement.addEventListener('click', (e) => {
+
+		if(e.target.getAttribute('sticker')) {
+			console.log(e.target)
+			//TODO: play sounds
+			//https://howlerjs.com/ -> 
+		}
+	});
+
 	// The deviceMotion function provide some subtle mouse based motion
 	// The effect can be used with the Freeform and Locked controls.
 	// This could also integrate device orientation on mobile
@@ -119,6 +128,4 @@ $(document).ready( function(){
 	// motion.range.z = 0;
 	// motion.paused = false;				// disables the effect
 
-	
-
-})
+});
