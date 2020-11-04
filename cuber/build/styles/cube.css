@@ -200,12 +200,13 @@
 }
 
 
-.cube .sticker.red 		{ background: #cca62b;	}
-.cube .sticker.white 	{ background: #856e0c;	}
-.cube .sticker.blue 	{ background: #fcb900; 	}
-.cube .sticker.green 	{ background: #865e06;	}
-.cube .sticker.orange 	{ background: #fcce37; 	}
-.cube .sticker.yellow 	{ background: #a78a3d; 	}
+
+.cube .sticker.red 		{ background: red;	}
+.cube .sticker.white 	{ background:white;	}
+.cube .sticker.blue 	{ background: blue; 	}
+.cube .sticker.green 	{ background: green;	}
+.cube .sticker.orange 	{ background: orange; 	}
+.cube .sticker.yellow 	{ background: yellow; 	}
 
 .cube .sticker.stickerLogo {
 

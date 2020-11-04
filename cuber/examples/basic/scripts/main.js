@@ -107,12 +107,104 @@ $(document).ready( function(){
 	}
 
 
+	const sounds = {
+		"10-1": "../sounds/Sound-01.mp3",
+		"1-1": "../sounds/Sound-02.mp3",
+		"2-1": "../sounds/Sound-03.mp3",
+		"11-1": "../sounds/Sound-04.mp3",
+		"20-1": "../sounds/Sound-05.mp3",
+		"19-1": "../sounds/Sound-06.mp3",
+		"18-1": "../sounds/Sound-07.mp3",
+		"9-1": "../sounds/Sound-08.mp3",
+		"0-1": "../sounds/Sound-09.mp3",
+
+		"0-0": "../sounds/Sound-10.mp3",
+		"1-0": "../sounds/Sound-11.mp3",
+		"2-0": "../sounds/Sound-12.mp3",
+
+		"2-2": "../sounds/Sound-13.mp3",
+		"11-2": "../sounds/Sound-14.mp3",
+		"20-2": "../sounds/Sound-15.mp3",
+
+		"20-5": "../sounds/Sound-16.mp3",
+		"19-5":"../sounds/Sound-17.mp3", 
+		"18-5":"../sounds/Sound-18.mp3", 
+
+		"18-4": "../sounds/Sound-19.mp3",
+		"9-4": "../sounds/Sound-20.mp3",
+		"0-4": "../sounds/Sound-21.mp3",
+
+		"3-0": "../sounds/Sound-22.mp3",
+		"4-0":"../sounds/Sound-23.mp3",
+		"5-0": "../sounds/Sound-24.mp3",
+
+		"5-2":  "../sounds/Sound-25.mp3",
+		"14-2": "../sounds/Sound-26.mp3",
+		"23-2": "../sounds/Sound-27.mp3",
+
+		"23-5": "../sounds/Sound-28.mp3",
+		"22-5": "../sounds/Sound-29.mp3",
+		"21-5":"../sounds/Sound-30.mp3",
+
+		"21-4":"../sounds/Sound-31.mp3", 
+		"12-4": "../sounds/Sound-32.mp3",
+		"3-4": "../sounds/Sound-33.mp3",
+
+		"6-0": "../sounds/Sound-34.mp3",
+		"7-0":"../sounds/Sound-35.mp3" ,
+		"8-0": "../sounds/Sound-36.mp3" ,
+
+		"8-2":  "../sounds/Sound-37.mp3",
+		"17-2": "../sounds/Sound-38.mp3",
+		"26-2": "../sounds/Sound-39.mp3",
+
+		"26-5": "../sounds/Sound-40.mp3",
+		"25-5": "../sounds/Sound-41.mp3",
+		"24-5":"../sounds/Sound-42.mp3",
+
+		"24-4": "../sounds/Sound-43.mp3",
+		"15-4": "../sounds/Sound-44.mp3",
+		"6-4": "../sounds/Sound-45.mp3",
+
+		"6-3": "../sounds/Sound-46.mp3",
+		"7-3": "../sounds/Sound-47.mp3",
+		"8-3": "../sounds/Sound-48.mp3",
+		"17-3": "../sounds/Sound-49.mp3",
+		"26-3": "../sounds/Sound-50.mp3",
+		"25-3": "../sounds/Sound-51.mp3",
+		"24-3": "../sounds/Sound-52.mp3",
+		"15-3": "../sounds/Sound-53.mp3",
+		"16-3": "../sounds/Sound-54.mp3",
+	}
+
+	
+	console.log(window.cube);
+	cube.inspect(); 
+	//window.cube.shuffle()
+	
+	
+	//OUR CODE
 	cube.domElement.addEventListener('click', (e) => {
 
 		if(e.target.getAttribute('sticker')) {
-			console.log(e.target)
-			//TODO: play sounds
-			//https://howlerjs.com/ -> 
+			let stickerId = e.target.getAttribute('sticker');
+
+
+			const sound = new Howl({
+				src: [sounds[stickerId]]
+			});
+			sound.play();
+
+			console.log(stickerId);
+			cube.up.northEast.inspect(); 
+			//
+			let positions = ['up', 'right', 'down', 'left', 'front', 'back'];
+			let facePositions = ['northWest', 'north', 'northEast', 'west', 'origin', 'east', 'southWest', 'south', 'southEast'];
+			
+			console.log(cube[positions[0]][facePositions[0]].id)	
+			// console.log(cube.up.north.inspect()); 
+			// console.log(cube.up.north.back.color); //this one does update!!!!
+			// console.log(cube.back.color);
 		}
 	});
 
