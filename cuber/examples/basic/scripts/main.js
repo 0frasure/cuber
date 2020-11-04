@@ -179,7 +179,7 @@ $(document).ready( function(){
 
 	
 	console.log(window.cube);
-	cube.inspect(); 
+	// cube.inspect(); 
 	//window.cube.shuffle()
 	
 	
@@ -195,15 +195,107 @@ $(document).ready( function(){
 			});
 			sound.play();
 
-			console.log(stickerId);
-			cube.up.northEast.inspect(); 
-			//
+			cube.inspect();
+			// cube.up.southEast.inspect(); 
+
+			let faceIds = [1, 2, 3, 4, 0, 5];
 			let positions = ['up', 'right', 'down', 'left', 'front', 'back'];
-			let facePositions = ['northWest', 'north', 'northEast', 'west', 'origin', 'east', 'southWest', 'south', 'southEast'];
+			let facePositions = ['southWest', 'south', 'southEast', 'west', 'origin', 'east', 'southWest', 'south', 'southEast'];
 			
-			console.log(cube[positions[0]][facePositions[0]].id)	
-			// console.log(cube.up.north.inspect()); 
-			// console.log(cube.up.north.back.color); //this one does update!!!!
+			
+			//faceId-faceposition up or cube.up.origin.up 
+			console.log(stickerId);
+			const orderOfSong = [ 
+				['up','origin'], 
+				['up','south'],
+				['up', 'southEast'],
+				['up', 'east'],
+				['up', 'southEast'],
+				['up', 'south'],
+				['up', 'southWest'],
+				['up', 'west'],
+				['up', 'southWest'],
+				
+				['front', 'southWest'],
+				['front', 'south'],
+				['front', 'southEast'],
+				['right', 'southWest'],
+				['right', 'south'],
+				['right', 'southEast'],
+				['back', 'southWest'],
+				['back', 'south'],
+				['back', 'southEast'],
+				['left', 'southWest'],
+				['left', 'south'],
+				['left', 'southEast'],
+				
+				['front', 'west'],
+				['front', 'origin'],
+				['front', 'east'],
+				['right', 'west'],
+				['right', 'origin'],
+				['right', 'east'],
+				['back', 'west'],
+				['back', 'origin'],
+				['back', 'east'],
+				['left', 'west'],
+				['left', 'origin'],
+				['left', 'east'],
+
+				['front', 'southWest'],
+				['front', 'south'],
+				['front', 'southEast'],
+				['right', 'southWest'],
+				['right', 'south'],
+				['right', 'southEast'],
+				['back', 'southWest'],
+				['back', 'south'],
+				['back', 'southEast'],
+				['left', 'southWest'],
+				['left', 'south'],
+				['left', 'southEast'],
+				
+				['down', 'southWest'],
+				['down', 'south'],
+				['down', 'southEast'],
+				['down', 'east'],
+				['down', 'northEast'],
+				['down', 'north'],
+				['down', 'northWest'],
+				['down', 'west'],
+				['down', 'origin']
+			];
+
+			for(let coordinates of orderOfSong) {
+
+				let cubletId; //TODO: fetch cubelet ID
+				let faceIdIndex = positions.indexOf(coordinates[0]);
+				let faceId = faceIds[faceIdIndex];
+
+				//TODO: redefine sticker ID
+				//let stickerId; 
+
+				//TODO: replace the play all logic into it's own play all function
+
+				let s = new Howl({
+					src: [sounds[stickerId]]
+				});
+				s.play();
+			}
+
+			// for(let position of positions) {
+			// 	for(let facePosition of facePositions) {
+			// 		console.log(position + " " + facePosition)
+			// 		let cubletId = cube[position][facePosition].id;
+			// 		let faceId = positions.indexOf(position);
+
+			// 		let color = cube[position][facePosition][position].color.name;
+			// 		console.log(`sticker id: ${cubletId}-${faceId}, color: ${color}`);	
+			// 	}
+			// }
+			
+			// console.log(cube.up.south.inspect()); 
+			// console.log(cube.up.south.back.color); //this one does update!!!!
 			// console.log(cube.back.color);
 		}
 	});
