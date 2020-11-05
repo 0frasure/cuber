@@ -277,10 +277,10 @@ $(document).ready( function(){
 
 				//TODO: replace the play all logic into it's own play all function
 
-				let s = new Howl({
-					src: [sounds[stickerId]]
-				});
-				s.play();
+				// let s = new Howl({
+				// 	src: [sounds[stickerId]]
+				// });
+				// s.play();
 			}
 
 			// for(let position of positions) {
