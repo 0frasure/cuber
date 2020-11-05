@@ -316,8 +316,8 @@ $(document).ready( function(){
 				}	
 			}
 		});
-		
-		if (s.duration() > 0) {
+
+		if (sounds[stickerId] != undefined) {
 			if (i<orderOfSong.length) {
 				s.play();
 			}
