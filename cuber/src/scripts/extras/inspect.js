@@ -53,6 +53,18 @@ ERNO.Cubelet.prototype.inspect = function( face ){
 			return colorName
 		}
 
+		getOriginalPos = function( face, justification, minimumLength ){
+
+			var colorName = that[ face ].color.name.toUpperCase()
+			
+			if( justification !== undefined && minimumLength !== undefined ){
+
+				if( justification === CENTER ) colorName = colorName.justifyCenter( minimumLength )
+				else if( justification === LEFT ) colorName = colorName.justifyLeft( minimumLength )
+			}
+			return colorName
+		}
+
 		if( id < 10 ) id = '0' + id
 		if( address < 10 ) address = '0' + address
 		console.log(

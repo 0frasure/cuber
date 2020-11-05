@@ -352,6 +352,8 @@
 	width: 100vw;
 	display: flex;
 	justify-content: center;
+	border-right: 4px solid black;
+	padding: 10px;
 }
 
 .buttons div {
