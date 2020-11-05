@@ -270,7 +270,6 @@ $(document).ready( function(){
 
 		if(e.target.getAttribute('sticker')) {
 			let stickerId = e.target.getAttribute('sticker');
-			console.log(stickerId);
 
 			let s = new Howl({
 				src: [sounds[stickerId]],
@@ -302,52 +301,37 @@ $(document).ready( function(){
 		const facePositions = ['southWest', 'south', 'southEast', 'west', 'origin', 'east', 'southWest', 'south', 'southEast'];
 
 		let coordinates = orderOfSong[i];
-
-
 		let cubletId = cube[coordinates[0]][coordinates[1]].id;
-		// let faceIdIndex = positions.indexOf(coordinates[0]);
-		// let faceId = faceIds[faceIdIndex];
-		let faceId = cube[coordinates[0]][coordinates[1]]; 
-
-		console.log(cube[coordinates[0]][coordinates[1]].faces);
-
-		cube[coordinates[0]][coordinates[1]].inspect()
-		// console.log(coordinates[0])
-		// console.log(coordinates[1])
-		// console.log('faceId: ' + faceId)
-
-
-		let stickerId = `${cubletId}-${faceId}`; 
-		console.log(stickerId);
+		let faceIdIndex = positions.indexOf(coordinates[0]);
+		let faceId = faceIds[faceIdIndex];
 		
+		
+		let stickerId = `${cubletId}-${faceId}`; 
+
 		let s = new Howl({
 			src: [sounds[stickerId]],
 			onend: () => {
-				console.log("when ending: " + (i<orderOfSong.length-1));
-				// remove class
-				// cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.remove("playing");	
 				if (i<orderOfSong.length-1) {
 					playSong(i += 1, orderOfSong);
 				}	
 			}
 		});
-
-		console.log("before playing: " + (i<orderOfSong.length));
-		if (i<orderOfSong.length && s.duration()>0) {
-			s.play();
-			// console.log(document.querySelector('[sticker="'+ stickerId + '"]'));
-		// 	if(cube.domElement.querySelector('[sticker="'+ stickerId + '"]')) {
-		// 		cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.add("playing");
-		// 	} else {
-		// 		console.log(cube.domElement.querySelector('[sticker]'));
-		// 		console.log(document.querySelector('[sticker]'));
-		// 		window.setTimeout(() => {
-		// 			console.log(cube.domElement.querySelector('[sticker]'));
-		// 			console.log(document.querySelector('[sticker]'));
-		// 		}, 1000);
-		// 	}
+		
+		if (s.duration() > 0) {
+			if (i<orderOfSong.length) {
+				s.play();
+			}
 		} else {
-			playSong(i += 1, orderOfSong);
+			let rndSound = Object.values(sounds)[Math.floor(Math.random()*53)];
+			s = new Howl({
+				src: [rndSound],
+				onend: () => {	
+					if (i<orderOfSong.length-1) {
+						playSong(i += 1, orderOfSong);
+					}	
+				}
+			});
+			s.play();
 		}
 	}
 
