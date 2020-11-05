@@ -348,12 +348,11 @@
 	flex-direction: column;
 	font-size: 32px;
 	position: absolute;
-	bottom: 36px;
-	width: 100vw;
+	bottom: 280px;
 	display: flex;
 	justify-content: center;
-	border-right: 4px solid black;
-	padding: 10px;
+	border-right: 5px solid black;
+	padding: 15px;
 }
 
 .buttons div {
