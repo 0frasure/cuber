@@ -80,14 +80,14 @@
 	position: absolute;
 	width:  1em;
 	height: 1em;
-	background-color: #000;
+	background-color: rgba(0, 0, 0, 0.158);
 	text-align: center;
 
 
-	-webkit-backface-visibility: hidden;
-  	-moz-backface-visibility:    hidden;
-  	-o-backface-visibility:      hidden;
-  	backface-visibility:         hidden;
+	-webkit-backface-visibility: visible;
+  	-moz-backface-visibility:    visible;
+  	-o-backface-visibility:      visible;
+  	backface-visibility:         visible;
 
 
   	padding: 0.05em;
@@ -199,24 +199,76 @@
 
 }
 
+.playing {
+	box-shadow: inset 0 0 100px 100px rgba( 255, 255, 255, 0.5 );
+}
 
-
-.cube .sticker.red 		{ background: red;	}
-.cube .sticker.white 	{ background:white;	}
+.cube .sticker.red 		{ background: rgba(26, 26, 26, 0.9);	}
+.cube .sticker.white 	{ background: black;	}
 .cube .sticker.blue 	{ background: blue; 	}
 .cube .sticker.green 	{ background: green;	}
-.cube .sticker.orange 	{ background: orange; 	}
+.cube .sticker.orange 	{ background: rgb(216, 216, 216, 0.9); 	}
 .cube .sticker.yellow 	{ background: yellow; 	}
 
-.cube .sticker.stickerLogo {
+/* .cube .sticker.stickerLogo {
 
 	background: #0eb16d url( "../media/rubiksLogoClassic.png" );
 	background-size: 100% 100%;
 	background-repeat: none;
+} */
+
+[sticker~="10-1"]{
+  background: rgba(151, 207, 211, 0.9) !important;
 }
 
+[sticker~="16-3"]{
+  background: rgba(19, 66, 70, 0.9) !important;
+}
 
+[sticker~="0-0"],
+[sticker~="1-0"],
+[sticker~="2-0"],
+[sticker~="2-2"],
+[sticker~="11-2"],
+[sticker~="20-2"],
+[sticker~="20-5"],
+[sticker~="19-5"],
+[sticker~="18-5"],
+[sticker~="18-4"],
+[sticker~="9-4"],
+[sticker~="0-4"]{
+  background: rgb(146, 146, 146, 0.9) !important;
+}
 
+[sticker~="3-0"],
+[sticker~="4-0"],
+[sticker~="5-0"],
+[sticker~="5-2"],
+[sticker~="14-2"],
+[sticker~="23-2"],
+[sticker~="23-5"],
+[sticker~="22-5"],
+[sticker~="21-5"],
+[sticker~="21-4"],
+[sticker~="12-4"],
+[sticker~="3-4"]{
+  background: rgb(87, 87, 87 , 0.9) !important;
+}
+
+[sticker~="6-0"],
+[sticker~="7-0"],
+[sticker~="8-0"],
+[sticker~="8-2"],
+[sticker~="17-2"],
+[sticker~="26-2"],
+[sticker~="26-5"],
+[sticker~="25-5"],
+[sticker~="24-5"],
+[sticker~="24-4"],
+[sticker~="15-4"],
+[sticker~="6-4"]{
+  background: rgb(56, 56, 56 , 0.9) !important;
+}
 
 /*
 
@@ -290,4 +342,18 @@
   	-moz-backface-visibility:    hidden;
   	-o-backface-visibility:      hidden;
   	backface-visibility:         hidden;*/
+}
+
+.buttons {
+	font-size: 32px;
+	position: absolute;
+	bottom: 36px;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+}
+
+.buttons div {
+	margin-left: 16px;
+	margin-right: 16px;
 }

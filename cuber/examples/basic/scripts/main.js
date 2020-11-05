@@ -78,8 +78,7 @@
 
 
 $(document).ready( function(){ 
-
-
+	
 	var useLockedControls = true,
 		controls = useLockedControls ? ERNO.Locked : ERNO.Freeform;
 
@@ -96,7 +95,9 @@ $(document).ready( function(){
 	var container = document.getElementById( 'container' );
 	container.appendChild( cube.domElement );
 
-
+	var shuffleButton = document.getElementById('shuffle-btn');
+	var playAllButton = document.getElementById('play-all-btn');
+	var playSolutionButton = document.getElementById('play-solution-btn');
 
 	if( controls === ERNO.Locked ){
 		var fixedOrientation = new THREE.Euler(  Math.PI * 0.1, Math.PI * -0.25, 0 );
@@ -108,15 +109,15 @@ $(document).ready( function(){
 
 
 	const sounds = {
-		"10-1": "../sounds/Sound-01.mp3",
-		"1-1": "../sounds/Sound-02.mp3",
-		"2-1": "../sounds/Sound-03.mp3",
-		"11-1": "../sounds/Sound-04.mp3",
-		"20-1": "../sounds/Sound-05.mp3",
-		"19-1": "../sounds/Sound-06.mp3",
-		"18-1": "../sounds/Sound-07.mp3",
-		"9-1": "../sounds/Sound-08.mp3",
-		"0-1": "../sounds/Sound-09.mp3",
+		"10-1": "../sounds/Sound-1.mp3",
+		"1-1": "../sounds/Sound-2.mp3",
+		"2-1": "../sounds/Sound-3.mp3",
+		"11-1": "../sounds/Sound-4.mp3",
+		"20-1": "../sounds/Sound-5.mp3",
+		"19-1": "../sounds/Sound-6.mp3",
+		"18-1": "../sounds/Sound-7.mp3",
+		"9-1": "../sounds/Sound-8.mp3",
+		"0-1": "../sounds/Sound-9.mp3",
 
 		"0-0": "../sounds/Sound-10.mp3",
 		"1-0": "../sounds/Sound-11.mp3",
@@ -177,128 +178,154 @@ $(document).ready( function(){
 		"16-3": "../sounds/Sound-54.mp3",
 	}
 
-	
-	console.log(window.cube);
-	// cube.inspect(); 
-	//window.cube.shuffle()
-	
-	
+	const orderOfSong = [ 
+		['up','origin'], 
+		['up','south'],
+		['up', 'southEast'],
+		['up', 'east'],
+		['up', 'northEast'],
+		['up', 'north'],
+		['up', 'northWest'],
+		['up', 'west'],
+		['up', 'southWest'],
+		
+		//round 1
+		['front', 'northWest'],
+		['front', 'north'],
+		['front', 'northEast'],
+
+		['right', 'northWest'],
+		['right', 'north'],
+		['right', 'northEast'],
+
+		['back', 'northEast'],
+		['back', 'east'],
+		['back', 'southEast'],
+
+		['left', 'northEast'],
+		['left', 'east'],
+		['left', 'southEast'],
+		//round 2
+		['front', 'west'],
+		['front', 'origin'],
+		['front', 'east'],
+
+		['right', 'west'],
+		['right', 'origin'],
+		['right', 'east'],
+
+		['back', 'north'],
+		['back', 'origin'],
+		['back', 'south'],
+
+		['left', 'north'],
+		['left', 'origin'],
+		['left', 'south'],
+		//round 3
+		['front', 'southWest'],
+		['front', 'south'],
+		['front', 'southEast'],
+		['right', 'southWest'],
+		['right', 'south'],
+		['right', 'southEast'],
+
+		['back', 'northWest'],
+		['back', 'west'],
+		['back', 'southWest'],
+		
+		['left', 'northWest'],
+		['left', 'west'],
+		['left', 'southWest'],
+		
+		['down', 'southWest'], 
+		['down', 'west'], 
+		['down', 'northWest'], 
+		['down', 'north'], 
+		['down', 'northEast'],
+		['down', 'east'],
+		['down', 'southEast'],
+		['down', 'south'], 
+		['down', 'origin']
+	];
 	//OUR CODE
+	
+	shuffleButton.addEventListener('click', (e) => {
+		let s = new Howl({
+			src: "../sounds/ShuffleWholeEdited01.mp3",
+		});
+		s.play();
+		cube.shuffle(15);
+	});
+
+	playAllButton.addEventListener('click', (e) => {
+		playSong(0, orderOfSong); //Add this to the button event listener
+	});
+
+	playSolutionButton.addEventListener('click', (e) => {
+		playSolution(1);
+	});
+
 	cube.domElement.addEventListener('click', (e) => {
 
 		if(e.target.getAttribute('sticker')) {
 			let stickerId = e.target.getAttribute('sticker');
-
-
-			const sound = new Howl({
-				src: [sounds[stickerId]]
+			let s = new Howl({
+				src: [sounds[stickerId]],
+				onend: () => {
+					// remove class
+					cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.remove("playing");
+				}
 			});
-			sound.play();
-
-			cube.inspect();
-			// cube.up.southEast.inspect(); 
-
-			let faceIds = [1, 2, 3, 4, 0, 5];
-			let positions = ['up', 'right', 'down', 'left', 'front', 'back'];
-			let facePositions = ['southWest', 'south', 'southEast', 'west', 'origin', 'east', 'southWest', 'south', 'southEast'];
-			
-			
-			//faceId-faceposition up or cube.up.origin.up 
-			console.log(stickerId);
-			const orderOfSong = [ 
-				['up','origin'], 
-				['up','south'],
-				['up', 'southEast'],
-				['up', 'east'],
-				['up', 'southEast'],
-				['up', 'south'],
-				['up', 'southWest'],
-				['up', 'west'],
-				['up', 'southWest'],
-				
-				['front', 'southWest'],
-				['front', 'south'],
-				['front', 'southEast'],
-				['right', 'southWest'],
-				['right', 'south'],
-				['right', 'southEast'],
-				['back', 'southWest'],
-				['back', 'south'],
-				['back', 'southEast'],
-				['left', 'southWest'],
-				['left', 'south'],
-				['left', 'southEast'],
-				
-				['front', 'west'],
-				['front', 'origin'],
-				['front', 'east'],
-				['right', 'west'],
-				['right', 'origin'],
-				['right', 'east'],
-				['back', 'west'],
-				['back', 'origin'],
-				['back', 'east'],
-				['left', 'west'],
-				['left', 'origin'],
-				['left', 'east'],
-
-				['front', 'southWest'],
-				['front', 'south'],
-				['front', 'southEast'],
-				['right', 'southWest'],
-				['right', 'south'],
-				['right', 'southEast'],
-				['back', 'southWest'],
-				['back', 'south'],
-				['back', 'southEast'],
-				['left', 'southWest'],
-				['left', 'south'],
-				['left', 'southEast'],
-				
-				['down', 'southWest'],
-				['down', 'south'],
-				['down', 'southEast'],
-				['down', 'east'],
-				['down', 'northEast'],
-				['down', 'north'],
-				['down', 'northWest'],
-				['down', 'west'],
-				['down', 'origin']
-			];
-
-			for(let coordinates of orderOfSong) {
-
-				let cubletId; //TODO: fetch cubelet ID
-				let faceIdIndex = positions.indexOf(coordinates[0]);
-				let faceId = faceIds[faceIdIndex];
-
-				//TODO: redefine sticker ID
-				//let stickerId; 
-
-				//TODO: replace the play all logic into it's own play all function
-
-				// let s = new Howl({
-				// 	src: [sounds[stickerId]]
-				// });
-				// s.play();
-			}
-
-			// for(let position of positions) {
-			// 	for(let facePosition of facePositions) {
-			// 		console.log(position + " " + facePosition)
-			// 		let cubletId = cube[position][facePosition].id;
-			// 		let faceId = positions.indexOf(position);
-
-			// 		let color = cube[position][facePosition][position].color.name;
-			// 		console.log(`sticker id: ${cubletId}-${faceId}, color: ${color}`);	
-			// 	}
-			// }
-			
-			// console.log(cube.up.south.inspect()); 
-			// console.log(cube.up.south.back.color); //this one does update!!!!
-			// console.log(cube.back.color);
+			s.play();
+			// add class
+			cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.add("playing");
 		}
 	});
+
+	function playSolution(i) {
+		let s = new Howl({
+			src: `../sounds/Sound-${i}.mp3`,
+			onend: () => {
+				if (i<55)
+					playSong(i += 1, orderOfSong);
+			}
+		});
+		s.play();
+	}
+
+	function playSong(i, orderOfSong) {
+		const faceIds = [1, 2, 3, 4, 0, 5];
+		const positions = ['up', 'right', 'down', 'left', 'front', 'back'];
+		const facePositions = ['southWest', 'south', 'southEast', 'west', 'origin', 'east', 'southWest', 'south', 'southEast'];
+
+		let coordinates = orderOfSong[i];
+
+		let cubletId = cube[coordinates[0]][coordinates[1]].id;
+		let faceIdIndex = positions.indexOf(coordinates[0]);
+		let faceId = faceIds[faceIdIndex];
+
+		let stickerId = `${cubletId}-${faceId}`; 
+		console.log(stickerId);
+		
+		let s = new Howl({
+			src: [sounds[stickerId]],
+			onend: () => {
+				// remove class
+				cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.remove("playing");	
+				if (i<orderOfSong.length-1) {
+					playSong(i += 1, orderOfSong);
+				}	
+			}
+		});
+
+		if (i<orderOfSong.length) {
+			s.play();
+			console.log(document.querySelector('[sticker="'+ stickerId + '"]'));
+			if(cube.domElement.querySelector('[sticker="'+ stickerId + '"]')) {
+				cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.add("playing");
+			}
+		}
+	}
 
 	// The deviceMotion function provide some subtle mouse based motion
 	// The effect can be used with the Freeform and Locked controls.
