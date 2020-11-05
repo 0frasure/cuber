@@ -267,18 +267,21 @@ $(document).ready( function(){
 
 	cube.domElement.addEventListener('click', (e) => {
 
+
 		if(e.target.getAttribute('sticker')) {
 			let stickerId = e.target.getAttribute('sticker');
+			console.log(stickerId);
+
 			let s = new Howl({
 				src: [sounds[stickerId]],
 				onend: () => {
 					// remove class
-					cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.remove("playing");
+					// cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.remove("playing");
 				}
 			});
 			s.play();
 			// add class
-			cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.add("playing");
+			// cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.add("playing");
 		}
 	});
 
@@ -287,7 +290,7 @@ $(document).ready( function(){
 			src: `../sounds/Sound-${i}.mp3`,
 			onend: () => {
 				if (i<55)
-					playSong(i += 1, orderOfSong);
+					playSolution(i += 1);
 			}
 		});
 		s.play();
@@ -300,9 +303,19 @@ $(document).ready( function(){
 
 		let coordinates = orderOfSong[i];
 
+
 		let cubletId = cube[coordinates[0]][coordinates[1]].id;
-		let faceIdIndex = positions.indexOf(coordinates[0]);
-		let faceId = faceIds[faceIdIndex];
+		// let faceIdIndex = positions.indexOf(coordinates[0]);
+		// let faceId = faceIds[faceIdIndex];
+		let faceId = cube[coordinates[0]][coordinates[1]]; 
+
+		console.log(cube[coordinates[0]][coordinates[1]].faces);
+
+		cube[coordinates[0]][coordinates[1]].inspect()
+		// console.log(coordinates[0])
+		// console.log(coordinates[1])
+		// console.log('faceId: ' + faceId)
+
 
 		let stickerId = `${cubletId}-${faceId}`; 
 		console.log(stickerId);
@@ -310,20 +323,31 @@ $(document).ready( function(){
 		let s = new Howl({
 			src: [sounds[stickerId]],
 			onend: () => {
+				console.log("when ending: " + (i<orderOfSong.length-1));
 				// remove class
-				cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.remove("playing");	
+				// cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.remove("playing");	
 				if (i<orderOfSong.length-1) {
 					playSong(i += 1, orderOfSong);
 				}	
 			}
 		});
 
-		if (i<orderOfSong.length) {
+		console.log("before playing: " + (i<orderOfSong.length));
+		if (i<orderOfSong.length && s.duration()>0) {
 			s.play();
-			console.log(document.querySelector('[sticker="'+ stickerId + '"]'));
-			if(cube.domElement.querySelector('[sticker="'+ stickerId + '"]')) {
-				cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.add("playing");
-			}
+			// console.log(document.querySelector('[sticker="'+ stickerId + '"]'));
+		// 	if(cube.domElement.querySelector('[sticker="'+ stickerId + '"]')) {
+		// 		cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.add("playing");
+		// 	} else {
+		// 		console.log(cube.domElement.querySelector('[sticker]'));
+		// 		console.log(document.querySelector('[sticker]'));
+		// 		window.setTimeout(() => {
+		// 			console.log(cube.domElement.querySelector('[sticker]'));
+		// 			console.log(document.querySelector('[sticker]'));
+		// 		}, 1000);
+		// 	}
+		} else {
+			playSong(i += 1, orderOfSong);
 		}
 	}
 

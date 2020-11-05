@@ -22,7 +22,10 @@ body {
 	overflow: hidden;
 }
 
-
+.buttons {
+	border-top: 4px solid black;
+	padding: 10px;
+}
 
 body, h1, h2 {
 

@@ -109,7 +109,7 @@
 	are momentarily visible as the cube twists.
 
 */
-.cube /*.cubelet >*/ .face.faceIntroverted { background-color: #000; }
+.cube /*.cubelet >*/ .face.faceIntroverted { background-color: rgba(3, 59, 63, 0.158); }
 
 
 
@@ -345,6 +345,7 @@
 }
 
 .buttons {
+	flex-direction: column;
 	font-size: 32px;
 	position: absolute;
 	bottom: 36px;
