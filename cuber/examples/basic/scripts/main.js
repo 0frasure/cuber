@@ -267,20 +267,18 @@ $(document).ready( function(){
 
 	cube.domElement.addEventListener('click', (e) => {
 
-
 		if(e.target.getAttribute('sticker')) {
 			let stickerId = e.target.getAttribute('sticker');
 
 			let s = new Howl({
 				src: [sounds[stickerId]],
 				onend: () => {
-					// remove class
-					// cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.remove("playing");
+					cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.remove("playing");
 				}
 			});
+			
 			s.play();
-			// add class
-			// cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.add("playing");
+			cube.domElement.querySelector('[sticker="'+ stickerId + '"]').classList.add("playing");
 		}
 	});
 
