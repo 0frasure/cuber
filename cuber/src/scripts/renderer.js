@@ -245,8 +245,7 @@ ERNO.renderers.CSS3DCubelet = (function(){
 
 			style.OTransform = style.MozTransform = style.WebkitTransform = style.transform = cssTransform;
 
-
-
+			
 			//  INTROVERTED FACES.
 			//  If this face has no color sticker then it must be interior to the Cube.
 			//  That means in a normal state (no twisting happening) it is entirely hidden.
@@ -279,6 +278,11 @@ ERNO.renderers.CSS3DCubelet = (function(){
 				stickerElement.classList.add( 'sticker' );
 				stickerElement.classList.add( face.color.name );		
 				face.element.appendChild( stickerElement );
+
+				// STICKER ID
+				// Making the sticker identifyable through the DOM because we're lazy
+				
+				stickerElement.setAttribute('sticker', `${cubelet.id}-${face.id}`);
 
 
 

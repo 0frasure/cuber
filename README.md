@@ -8,3 +8,4 @@ Official project site: https://www.chrome.com/cubelab
 Demo: http://seanfrasure.github.io/cuber/cuber/index.html
 
 *If there are any questions please feel free to make a new issue*
+

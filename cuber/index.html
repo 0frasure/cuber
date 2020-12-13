@@ -28,6 +28,8 @@
 
 		<script charset="utf-8" src="src/scripts/vendor/tween.min.js"></script>
 
+		<!-- Added libraries -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js" integrity="sha512-L6Z/YtIPQ7eU3BProP34WGU5yIRk7tNHk7vaC2dB1Vy1atz6wl9mCkTPPZ2Rn1qPr+vY2mZ9odZLdGYuaBk7dQ==" crossorigin="anonymous"></script>
 
 		<!-- cube source code -->
 
@@ -76,7 +78,7 @@
 
 
 		<!-- implementation -->	
-
+		<script charset="utf-8" src="src/scripts/extras/inspect.js"></script>
 
 		<script charset="utf-8" src="examples/basic/scripts/jquery.js"></script>
 		<script charset="utf-8" src="src/scripts/extras/renderers/iecss3d.js"></script>
@@ -89,11 +91,20 @@
 
 	</head>
 	<body class="graydient" >
+		<div class="title">
+			Rubik's Melody, created by Ilse, Imani, Björn, Tudor and Daniël.
+		</div>
 		<div id="container" ></div>
+	
 		<div id="fail">
 			<h1>Sorry,</h1>
 			<h2>Cubers broken</h2>
 		</div>
-		
+
+		<div class="buttons">
+			<div id="shuffle-btn"><img src="../img/Shuffle.png" ></div>
+			<div id="play-all-btn"><img src="../img/Play_All.png" ></div>
+			<div id="play-solution-btn"><img src="../img/Play_Our_Song.png"></div>
+		</div>
 	</body>
 </html>
